@@ -7,7 +7,7 @@
 public class SavingsAccount extends Account {
 	private static final double interestRate = 0.0314; 
 	//3.14 percent interest rate
-	private int freeWithdraws = 0;
+	//private int freeWithdraws = 0;
 	
 	public SavingsAccount(int aNum, double bal) {
 		super(aNum, bal);
@@ -17,15 +17,16 @@ public class SavingsAccount extends Account {
 		setBalance(getBalance() - amt);
 		System.out.println("ACCOUNT " + getAccNum()
 				+ "\n -- BALANCE: " + getBalance());
-		freeWithdraws++;
-		if (freeWithdraws > 3) {
+		addWithdrawal();
+		if (getFreeWithdrawsLeft() > 3) {
 			setBalance(getBalance() - 1);
 			System.out.println("Account#" + getAccNum() + " charged processing fee.");
 		}
+		System.out.println("iMMA SAvInGs");
 	}
 	
 	public void monthEnd() {
-		freeWithdraws = 0;
+		resetWithdrawals();
 		setBalance(getBalance() + (getBalance() * interestRate));
 		setBalance(Math.round(getBalance() * 100));
 		setBalance(getBalance() / 100);
