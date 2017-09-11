@@ -15,14 +15,16 @@ public class BankMain {
 		Account ca1 = new Account(2, 0.0);
 		accountList.add(ca1);
 		String in;
-		double param;
+		int param1;
+		double param2;
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("Welcome to the bank terminal.");
 		System.out.println("----------------");
 		
-		boolean q = false;
-		while (q == false) {
-			System.out.println(" A)dd Account   W)ithdraw   D)eposit   M)onth End   Q)uit");
+		boolean q = true;
+		boolean adv = false;
+		while (adv == false) {
+			System.out.println("A)dd Account   R)emove Account   C)ontinue to console");
 			System.out.println("");
 			in = scnr.next();
 			
@@ -40,21 +42,33 @@ public class BankMain {
 					accountList.add(newAcc);
 				}
 			}
+			
+			if (in.equals("C") || in.equals("c")) {
+				q = false;
+				adv = true;
+			}
+		}
+		while (q == false) {
+			System.out.println("W)ithdraw   D)eposit   M)onth End   Q)uit");
+			System.out.println("");
+			in = scnr.next();
+			
 			if (in.equals("W") || in.equals("w")) {
+				System.out.println("Querry Acc #: ");
+				System.out.println("");
+				param1 = scnr.nextInt();
 				System.out.println("How much to withdraw? ");
 				System.out.println("");
-				param = scnr.nextDouble();
-				for (Account personInArrayList: accountList) {
-					personInArrayList.withdraw(param);
-			   }
+				param2 = scnr.nextDouble();
+				accountList.get(param1).withdraw(param2);
 			}
 			
 			if (in.equals("D") || in.equals("d")) {
 				System.out.println("How much to deposit? ");
 				System.out.println("");
-				param = scnr.nextDouble();
+				param2 = scnr.nextDouble();
 				for (Account personInArrayList: accountList) {
-					personInArrayList.deposit(param);
+					personInArrayList.deposit(param2);
 			   }
 			}
 			
@@ -65,6 +79,16 @@ public class BankMain {
 				
 				for (Account personInArrayList: accountList) {
 					personInArrayList.monthEnd();
+		       }
+			}
+            
+            if (in.equals("L") || in.equals("l")) {
+				
+				System.out.println("Displaying accountList... ");
+				System.out.println("");
+				
+				for (Account personInArrayList: accountList) {
+					personInArrayList.displayBal();
 		       }
 			}
 			

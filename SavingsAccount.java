@@ -22,7 +22,7 @@ public class SavingsAccount extends Account {
 			setBalance(getBalance() - 1);
 			System.out.println("Account#" + getAccNum() + " charged processing fee.");
 		}
-		System.out.println("iMMA SAvInGs");
+		System.out.println("DEBUG: SAVINGS");
 	}
 	
 	public void monthEnd() {
